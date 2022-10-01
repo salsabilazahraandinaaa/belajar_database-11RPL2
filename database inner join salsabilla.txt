@@ -1,0 +1,55 @@
+1.CREATE DATABASE 'db_penjualan';
+2.CREATE TABLE `db_penjualan`.`pelanggan` (`id_pelanggan` INT(5) NOT NULL , `nm_pelanggan` VARCHAR(20) NOT NULL , `alamat` VARCHAR(30) NOT NULL , `telepon` VARCHAR(20) NOT NULL , `email` VARCHAR(30) NOT NULL , PRIMARY KEY (`id_pelanggan`)) ENGINE = InnoDB;
+3.CREATE TABLE `db_penjualan`.`pesan` (`id_pesan` INT(5) NOT NULL , `tgl_pesan` INT(20) NOT NULL , `id_pelanggan` INT(5) NOT NULL , PRIMARY KEY (`id_pesan`)) ENGINE = InnoDB;
+4.CREATE TABLE `db_penjualan`.`produk` (`id_produk` INT(5) NOT NULL , `nm_produk` VARCHAR(20) NOT NULL , `satuan` VARCHAR(5) NOT NULL , `harga` INT(20) NOT NULL , `stock` INT(10) NOT NULL , PRIMARY KEY (`id_produk`)) ENGINE = InnoDB;
+5.CREATE TABLE `db_penjualan`.`kuitansi` (`id_kuitansi` INT(5) NOT NULL , `tgl_kuitansi` VARCHAR(20) NOT NULL , PRIMARY KEY (`id_kuitansi`)) ENGINE = InnoDB
+6.CREATE TABLE `db_penjualan`.`faktur` (`id_faktur` INT(5) NOT NULL , `tgl_faktur` VARCHAR(20) NOT NULL , PRIMARY KEY (`id_faktur`)) ENGINE = InnoDB;
+7.CREATE TABLE `db_penjualan`.`detail_pesan` (`id_pesan` INT(5) NOT NULL , `id_produk` INT(5) NOT NULL , `jumlah` INT(10) NOT NULL , `harga` INT(20) NOT NULL ) ENGINE = InnoDB
+8.INSERT INTO pelanggan VALUES
+('1101','randi','sukabumi','085793099237','randialhafid@gmail.com'),
+('1102','andi','jakarta','085793099247','andi@gmail.com'),
+('1103','endang','bandung','085793099337','endang@gmail.com'),
+('1104','rara','sukabumi','085793099238','rara@gmail.com'),
+('1105','rani','solo','085793099240','rani@gmail.com')
+9.INSERT INTO pesan VALUES
+('1201','14-06-2018','1101'),
+('1202','14-06-2018','1102'),
+('1203','14-06-2018','1103'),
+('1204','14-06-2018','1104'),
+('1205','14-06-2018','1105')
+10.INSERT INTO produk VALUES
+('1301','canon','','5000000','9'),
+('1302','nikon','','4000000','9'),
+('1303','sony','','4500000','9'),
+('1304','gopro','','6000000','9'),
+('1305','dji pro','','15000000','9')
+11.INSERT INTO faktur VALUES
+('1501','14-06-2018'),
+('1502','15-06-2018'),
+('1503','16-06-2018'),
+('1504','14-06-2018'),
+('1505','17-06-2018')
+12.INSERT INTO kuitansi VALUES
+('1401','14-06-2018'),
+('1402','15-06-2018'),
+('1403','16-06-2018'),
+('1404','17-06-2018'),
+('1405','18-06-2018')
+13.INSERT INTO detail_pesan VALUES
+('1101','1301','2','5000000'),
+('1101','1302','2','4500000'),
+('1102','1303','1','4000000'),
+('1103','1304','2','15000000'),
+('1101','1301','1','15000000')
+14.SELECT pelanggan.id_pelanggan, pelanggan.nm_pelanggan, pesan.id_pesan, pesan.tgl_pesan
+FROM pelanggan
+INNER JOIN pesan
+ON pelanggan.id_pelanggan = pesan.id_pelanggan
+15.SELECT pelanggan.id_pelanggan, pelanggan.nm_pelanggan, pesan.id_pesan, pesan.tgl_pesan
+FROM pelanggan
+LEFT JOIN pesan
+ON pelanggan.id_pelanggan = pesan.id_pelanggan;
+16.SELECT pelanggan.id_pelanggan, pelanggan.nm_pelanggan, pesan.id_pesan, pesan.tgl_pesan
+FROM pelanggan
+RIGHT JOIN pesan
+ON pelanggan.id_pelanggan = pesan.id_pelanggan;
